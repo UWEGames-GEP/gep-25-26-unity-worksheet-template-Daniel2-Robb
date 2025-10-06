@@ -9,7 +9,7 @@ public enum GameState
 public class GameManager : MonoBehaviour
 {
     public GameState state;
-    public bool gameStateChanged = false;
+    private bool gameStateChanged = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
