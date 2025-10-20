@@ -8,6 +8,7 @@ public class Inventory : MonoBehaviour
     public List<string> items = new List<string>();
     public GameManager manager;
     private string sortTemp1 = null;
+    private int equipped = 0;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -30,7 +31,22 @@ public class Inventory : MonoBehaviour
                     {
                         RemoveItem("placeholder");
                     }*/
-                    break;
+
+                    if(Input.GetKeyDown(KeyCode.E))
+                    {
+                        equipped++;
+                    }
+                    else if(Input.GetKeyDown(KeyCode.Q))
+                    {
+                        equipped--;
+                    }
+
+                    if (Input.GetKeyDown(KeyCode.O))
+                    {
+                        RemoveItem(items[equipped]);
+                    }
+
+                        break;
                 }
             case GameState.PAUSE:
                 {
