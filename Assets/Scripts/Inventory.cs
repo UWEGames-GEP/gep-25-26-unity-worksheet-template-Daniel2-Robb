@@ -43,7 +43,18 @@ public class Inventory : MonoBehaviour
     public void AddItem(string itemName)
     {
         items.Add(itemName);
+        InventorySort();
 
+    }
+
+    public void RemoveItem(string itemName)
+    {
+        items.Remove(itemName);
+        InventorySort();
+    }
+
+    private void InventorySort()
+    {
         bool itemsSorted = false;
 
         while (!itemsSorted)
@@ -62,11 +73,5 @@ public class Inventory : MonoBehaviour
             }
             Debug.Log("Inventory sorted");
         }
-
-    }
-
-    public void RemoveItem(string itemName)
-    {
-        items.Remove(itemName);
     }
 }
