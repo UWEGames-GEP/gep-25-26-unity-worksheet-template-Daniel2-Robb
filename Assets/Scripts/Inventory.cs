@@ -22,14 +22,14 @@ public class Inventory : MonoBehaviour
         {
             case GameState.GAMEPLAY:
                 {
-                    if (Input.GetKeyDown(KeyCode.I))
+                   /* if (Input.GetKeyDown(KeyCode.I))
                     {
                         AddItem("placeholder");
                     }
                     else if (Input.GetKeyDown(KeyCode.O))
                     {
                         RemoveItem("placeholder");
-                    }
+                    }*/
                     break;
                 }
             case GameState.PAUSE:
@@ -57,6 +57,7 @@ public class Inventory : MonoBehaviour
     {
         bool itemsSorted = false;
 
+        //Sort player inventory via bubble sort
         while (!itemsSorted)
         {
             itemsSorted = true;
@@ -72,6 +73,21 @@ public class Inventory : MonoBehaviour
                 }
             }
             Debug.Log("Inventory sorted");
+        }
+    }
+
+    public void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        Item collisionItem = hit.gameObject.GetComponent<Item>();
+
+        if (collisionItem != null)
+        {
+            //Add item collied with to inventory
+            AddItem(collisionItem.ItemName);
+
+            //Destroy collected item
+            Destroy(collisionItem.gameObject);
+
         }
     }
 }
