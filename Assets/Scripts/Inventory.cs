@@ -6,7 +6,7 @@ public class Inventory : MonoBehaviour
 {
 
     public List<string> items = new List<string>();
-    public GameManager manager;
+    [SerializeField] GameManager manager;
     private string sortTemp1 = null;
     private int equipped = 0;
 
@@ -103,6 +103,17 @@ public class Inventory : MonoBehaviour
 
             //Destroy collected item
             Destroy(collisionItem.gameObject);
+
+            switch (collisionItem.ItemType)
+            {
+                case ("Placeable"):
+                    Debug.Log("You can place this");
+                    break;
+                case ("Throwable"):
+                    Debug.Log("You can throw this");
+                    break;
+            }
+
 
         }
     }
