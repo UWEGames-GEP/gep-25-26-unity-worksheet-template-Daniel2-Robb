@@ -20,32 +20,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        switch (state)
-        {
-            case GameState.GAMEPLAY:
-                
-                if(Input.GetKeyDown(KeyCode.Return))
-                {
-                    state=GameState.PAUSE;
-                    gameStateChanged = true;
-                }
-
-                break;
-
-            case GameState.PAUSE:
-
-                if (Input.GetKeyDown(KeyCode.Return))
-                {
-                    state = GameState.GAMEPLAY;
-                    gameStateChanged = true;
-                }
-
-                break;
-
-
-        }
-
-
+        
     }
     
     //Late Update is called once per frame after Update
@@ -69,6 +44,27 @@ public class GameManager : MonoBehaviour
 
                     break;
             }
+        }
+    }
+
+    public void Pause()
+    {
+        switch (state)
+        {
+            case GameState.GAMEPLAY:
+                state = GameState.PAUSE;
+                gameStateChanged = true;
+
+                break;
+
+            case GameState.PAUSE:
+
+                state = GameState.GAMEPLAY;
+                gameStateChanged = true;
+
+                break;
+
+
         }
     }
 }
