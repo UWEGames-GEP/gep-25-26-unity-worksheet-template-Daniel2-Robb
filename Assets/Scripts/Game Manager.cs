@@ -40,7 +40,6 @@ public class GameManager : MonoBehaviour
                     Time.timeScale = 1.0f;
                     inventory_menu.SetActive(false);
                     Cursor.lockState = CursorLockMode.Locked;
-                    //player.LockCameraPosition = false;
 
                     break;
 
@@ -48,7 +47,6 @@ public class GameManager : MonoBehaviour
                     Time.timeScale = 0.0f;
                     inventory_menu.SetActive(true);
                     Cursor.lockState = CursorLockMode.None;
-                    //player.LockCameraPosition = true;
 
                     break;  
 
@@ -56,7 +54,6 @@ public class GameManager : MonoBehaviour
 
                     Time.timeScale = 0.0f;
                     Cursor.lockState = CursorLockMode.Locked;
-                    //player.LockCameraPosition = true;
 
 
                     break;

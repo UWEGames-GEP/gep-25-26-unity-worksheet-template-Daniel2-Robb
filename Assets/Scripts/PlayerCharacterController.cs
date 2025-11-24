@@ -10,13 +10,31 @@ public class PlayerCharacterController : ThirdPersonController
     private void OnPause(InputValue value)
     {
         manager.Pause();
-        LockCameraPosition = !LockCameraPosition;
+        switch (manager.state)
+        {
+            case GameState.PAUSE:
+                LockCameraPosition = true;
+                break;
+
+            case GameState.GAMEPLAY:
+                LockCameraPosition = false;
+                break;
+        }
     }
 
     private void OnInventoryOpenClose(InputValue value)
     {
         manager.Inventory();
-        LockCameraPosition = !LockCameraPosition;
+        switch (manager.state)
+        {
+            case GameState.INVENTORY:
+                LockCameraPosition = true;
+                break;
+
+            case GameState.GAMEPLAY:
+                LockCameraPosition = false;
+                break;
+        }
     }
 
     private void OnRemoveItem(InputValue value)
@@ -27,4 +45,5 @@ public class PlayerCharacterController : ThirdPersonController
             GetComponent<Inventory>().RemoveFirstItem();
         }
     }
+
 }
