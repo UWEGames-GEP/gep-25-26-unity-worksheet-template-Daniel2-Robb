@@ -10,6 +10,13 @@ public class PlayerCharacterController : ThirdPersonController
     private void OnPause(InputValue value)
     {
         manager.Pause();
+        LockCameraPosition = !LockCameraPosition;
+    }
+
+    private void OnInventoryOpenClose(InputValue value)
+    {
+        manager.Inventory();
+        LockCameraPosition = !LockCameraPosition;
     }
 
     private void OnRemoveItem(InputValue value)

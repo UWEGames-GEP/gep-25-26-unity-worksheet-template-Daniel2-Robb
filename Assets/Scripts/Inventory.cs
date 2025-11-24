@@ -68,18 +68,14 @@ public class Inventory : MonoBehaviour
         InventorySort();
     }
 
-    public void RemoveSpecificItem(Item itemName)
-    {
-        items.Remove(itemName);
-        InventorySort();
-    }
+    //public void RemoveSpecificItem(Item itemName)
+    //{
+    //    items.Remove(itemName);
+    //    InventorySort();
+    //}
 
-    public void RemoveFirstItem()
+    public void RemoveItem(Item item)
     {
-        if (manager.state == GameState.GAMEPLAY && items.Count > 0)
-        {
-            Item item = items[0]; 
-
             //Get properties of new instance of object
             //Vector3s
             Vector3 currentPosition = transform.position;
@@ -102,8 +98,22 @@ public class Inventory : MonoBehaviour
             //remove existing item
             items.Remove(item);
             Destroy(item.gameObject);
+    }
 
-            
+    public void RemoveFirstItem()
+    {
+        if (manager.state == GameState.GAMEPLAY && items.Count > 0)
+        {
+            Item item = items[0];
+            RemoveItem(item);
+        }
+    }
+
+    public void RemoveSpecificItem(int i)
+    {
+        if(i < items.Count)
+        {
+            RemoveItem(items[i]);
         }
     }
 

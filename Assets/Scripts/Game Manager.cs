@@ -1,15 +1,18 @@
+using StarterAssets;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public enum GameState
 {
-    GAMEPLAY, PAUSE
+    GAMEPLAY, INVENTORY, PAUSE
 };
 
 public class GameManager : MonoBehaviour
 {
     public GameState state;
     private bool gameStateChanged = false;
+    [SerializeField] GameObject inventory_menu;
+    [SerializeField]PlayerCharacterController player;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -35,12 +38,26 @@ public class GameManager : MonoBehaviour
                 case GameState.GAMEPLAY:
 
                     Time.timeScale = 1.0f;
+                    inventory_menu.SetActive(false);
+                    Cursor.lockState = CursorLockMode.Locked;
+                    //player.LockCameraPosition = false;
 
                     break;
+
+                case GameState.INVENTORY:
+                    Time.timeScale = 0.0f;
+                    inventory_menu.SetActive(true);
+                    Cursor.lockState = CursorLockMode.None;
+                    //player.LockCameraPosition = true;
+
+                    break;  
 
                 case GameState.PAUSE:
 
                     Time.timeScale = 0.0f;
+                    Cursor.lockState = CursorLockMode.Locked;
+                    //player.LockCameraPosition = true;
+
 
                     break;
             }
@@ -65,6 +82,21 @@ public class GameManager : MonoBehaviour
                 break;
 
 
+        }
+    }
+
+    public void Inventory()
+    {
+        switch (state)
+        {
+            case GameState.GAMEPLAY:
+                state= GameState.INVENTORY;
+                gameStateChanged= true;
+                break;
+            case GameState.INVENTORY:
+                state= GameState.GAMEPLAY;
+                gameStateChanged = true;
+                break;
         }
     }
 }

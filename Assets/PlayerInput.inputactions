@@ -58,6 +58,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Inventory Open Close",
+                    "type": "Button",
+                    "id": "f134a2dc-6c85-4442-9bbb-59db00f453b0",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -256,6 +265,17 @@
                     "processors": "",
                     "groups": ";KeyboardMouse",
                     "action": "Remove Item",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a85efa93-48de-4f7a-9ff5-e3aeaeb31447",
+                    "path": "<Keyboard>/i",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";KeyboardMouse",
+                    "action": "Inventory Open Close",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
