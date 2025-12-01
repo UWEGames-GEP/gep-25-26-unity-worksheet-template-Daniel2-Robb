@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public GameState state;
     private bool gameStateChanged = false;
     [SerializeField] GameObject inventory_menu;
+    [SerializeField] GameObject pause_menu;
     [SerializeField]PlayerCharacterController player;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -39,6 +40,7 @@ public class GameManager : MonoBehaviour
 
                     Time.timeScale = 1.0f;
                     inventory_menu.SetActive(false);
+                    pause_menu.SetActive(false);
                     Cursor.lockState = CursorLockMode.Locked;
 
                     break;
@@ -53,7 +55,9 @@ public class GameManager : MonoBehaviour
                 case GameState.PAUSE:
 
                     Time.timeScale = 0.0f;
-                    Cursor.lockState = CursorLockMode.Locked;
+                    pause_menu.SetActive(true);
+                    Cursor.lockState = CursorLockMode.None;
+                    
 
 
                     break;
@@ -72,7 +76,6 @@ public class GameManager : MonoBehaviour
                 break;
 
             case GameState.PAUSE:
-
                 state = GameState.GAMEPLAY;
                 gameStateChanged = true;
 
