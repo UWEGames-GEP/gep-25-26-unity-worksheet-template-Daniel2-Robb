@@ -9,6 +9,7 @@ public class PlayerCharacterController : ThirdPersonController
 
     private void OnPause(InputValue value)
     {
+        //Pause/unpause game, locking and unlocking camera as needed
         manager.Pause();
         switch (manager.state)
         {
@@ -24,6 +25,7 @@ public class PlayerCharacterController : ThirdPersonController
 
     private void OnInventoryOpenClose(InputValue value)
     {
+        //open/close inventory, locking and unlocking camera as needed
         manager.Inventory();
         switch (manager.state)
         {
@@ -39,6 +41,7 @@ public class PlayerCharacterController : ThirdPersonController
 
     private void OnRemoveItem(InputValue value)
     {
+        //remove first item in inventory array
         if (value.isPressed)
         {
             Debug.Log("Removed Item");

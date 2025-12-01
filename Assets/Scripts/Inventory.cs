@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System;
+using Unity.VisualScripting.ReorderableList;
 
 public class Inventory : MonoBehaviour
 {
@@ -8,7 +9,6 @@ public class Inventory : MonoBehaviour
     public List<Item> items = new List<Item>();
     GameManager manager;
     private Item sortTemp1 = null;
-    //private int equipped = 0;
     Transform worldItemsTransform;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -29,30 +29,7 @@ public class Inventory : MonoBehaviour
         {
             case GameState.GAMEPLAY:
                 {
-                   /* if (Input.GetKeyDown(KeyCode.I))
-                    {
-                        AddItem("placeholder");
-                    }
-                    else if (Input.GetKeyDown(KeyCode.O))
-                    {
-                        RemoveItem("placeholder");
-                    }*/
-
-                    //if(Input.GetKeyDown(KeyCode.E))
-                    //{
-                    //    equipped++;
-                    //}
-                    //else if(Input.GetKeyDown(KeyCode.Q))
-                    //{
-                    //    equipped--;
-                    //}
-
-                    //if (Input.GetKeyDown(KeyCode.O))
-                    //{
-                    //    RemoveItem(items[equipped]);
-                    //}
-
-                        break;
+                    break;
                 }
             case GameState.PAUSE:
                 {
@@ -68,11 +45,6 @@ public class Inventory : MonoBehaviour
         InventorySort();
     }
 
-    //public void RemoveSpecificItem(Item itemName)
-    //{
-    //    items.Remove(itemName);
-    //    InventorySort();
-    //}
 
     public void RemoveItem(Item item)
     {
@@ -100,6 +72,7 @@ public class Inventory : MonoBehaviour
             Destroy(item.gameObject);
     }
 
+    //removing item from first slot in inventory
     public void RemoveFirstItem()
     {
         if (manager.state == GameState.GAMEPLAY && items.Count > 0)
@@ -109,6 +82,7 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    //removing specific item from inventory
     public void RemoveSpecificItem(int i)
     {
         if(i < items.Count)
@@ -117,11 +91,11 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    //sorting inventory (bubble sort)
     private void InventorySort()
     {
         bool itemsSorted = false;
 
-        //Sort player inventory via bubble sort
         while (!itemsSorted)
         {
             itemsSorted = true;
@@ -140,6 +114,7 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    //when player collides with item, add that item to inventory
     public void OnControllerColliderHit(ControllerColliderHit hit)
     {
         Item collisionItem = hit.gameObject.GetComponent<Item>();
@@ -149,7 +124,6 @@ public class Inventory : MonoBehaviour
 
             Debug.Log("Collided with collectible: " + collisionItem.name);
             //Disable collected item
-            //Destroy(collisionItem.gameObject);
             collisionItem.gameObject.SetActive(false);
 
             //Add item collied with to inventory

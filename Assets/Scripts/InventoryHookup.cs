@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class InventoryHookup : MonoBehaviour
 {
-
     public Inventory activeInventory;
     public List<GameObject> inventoryButtons = new List<GameObject>();
 
@@ -13,12 +12,14 @@ public class InventoryHookup : MonoBehaviour
         InventoryUpdate();
     }
 
+    //Update inventory screen when it is changed
     void InventoryUpdate()
     {
         Debug.Log("Updating Inventory");
 
         for (int i = 0; i < inventoryButtons.Count; i++)
         {
+            //deactivate all buttons
             inventoryButtons[i].SetActive(false);
         }
 
@@ -26,6 +27,7 @@ public class InventoryHookup : MonoBehaviour
         {
             if(i <  inventoryButtons.Count)
             {
+                //activate buttons if an item is in the associated inventory slot
                 InventoryUIButton button = inventoryButtons[i].GetComponent<InventoryUIButton>();
                 Item item = activeInventory.items[i];
 
@@ -35,6 +37,7 @@ public class InventoryHookup : MonoBehaviour
         }
     }
 
+    //remove item from inventory when associated button is pressed
     public void OnInventoryUIButton(int i)
     {
         activeInventory.RemoveSpecificItem(i);
