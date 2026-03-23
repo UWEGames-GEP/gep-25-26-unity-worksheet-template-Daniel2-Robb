@@ -61,15 +61,19 @@ public class Inventory : MonoBehaviour
             Quaternion newRotation = currentRotation * Quaternion.Euler(0, 0, 100);
 
             //instantiate new copy of the item
-            GameObject newItem = Instantiate(item.gameObject, newPosition, newRotation, worldItemsTransform);
-            newItem.SetActive(true);
+           /* GameObject newItem = Instantiate(item.gameObject, newPosition, newRotation, worldItemsTransform);
+            newItem.SetActive(true);*/
+
+            //Reactivate dropped item
+            item.transform.position = newPosition;
+            item.transform.rotation = newRotation;
+            item.gameObject.SetActive(true);
 
             //resort inventory
             InventorySort();
-
-            //remove existing item
+        
+            //remove existing item from inventory
             items.Remove(item);
-            Destroy(item.gameObject);
     }
 
     //removing item from first slot in inventory
